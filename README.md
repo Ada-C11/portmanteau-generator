@@ -129,7 +129,7 @@ There is no requirement that inputs must be upper or lowercase.
 - In the first word, find the last instance of a vowel. The first half of the portmanteau will keep every letter of the first word until and **excluding** its last vowel.
 
   For example, if the first word is `dreams`, then `a` is the last vowel in this word. The first part of the new portmanteau is `dre`, excluding the `a`
-- In the second word, find the first instance of a vowel. The second half of the portmanteau will keep every letter of the second word after and **including** its last vowel.
+- In the second word, find the first instance of a vowel. The second half of the portmanteau will keep every letter of the second word after and **including** its first vowel.
 
   For example, if the second word is `hopes`, then `o` is the first vowel in this word. The second part of the new portmanteau is `opes`, including the `o`
 - If there are no vowels found in the first word, _use every letter in the first word_ in the first part of the portmanteau.
