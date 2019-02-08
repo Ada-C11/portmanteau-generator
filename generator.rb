@@ -21,7 +21,7 @@ def run_generator
   first_index = word_one.length - 1
 
   word_one.reverse.each_char do |letter|
-    if !word_one.match (/[aeiou]/)
+    if !is_vowel?(letter)
       new_word_one = word_one
     elsif is_vowel?(letter)
       new_word_one = word_one[0...first_index]
