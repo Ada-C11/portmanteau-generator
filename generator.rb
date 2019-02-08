@@ -32,7 +32,7 @@ def run_generator
   puts "in the run_generator method"
 
   i = 0
-  part1 = nil
+  part1 = 0
   a.reverse.each_char do |letter|
     if is_vowel?(letter)
       part1 = (a.length + 1) - i
@@ -42,7 +42,7 @@ def run_generator
   end
 
   i = 0
-  part2 = nil
+  part2 = 0
   b.each_char do |letter|
     if is_vowel?(letter)
       part2 = i
