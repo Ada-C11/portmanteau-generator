@@ -71,18 +71,17 @@ end
 run_generator
 
 
-# Trying to run program again
-
-# answer = "yes"
-# while answer == "yes"
-   # puts "Would you like to run again? y || n"
-    # answer = gets.chomp
-      #  if answer == "yes"
-       #     run_generator
-       # else 
-       #     break
-       # end
-# end
+# Ask if user whants to run program again and runs method run_generator if so
+ answer = "y"
+ while answer == "y"
+    puts "Would you like to run again? y || n"
+    answer = gets.chomp
+        if answer == "y"
+            run_generator
+        else 
+            break
+        end
+ end
 
 # Some Pseudocode
 # while user input for word 1 & 2 is less than two characters
