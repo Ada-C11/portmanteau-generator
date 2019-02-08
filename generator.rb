@@ -44,7 +44,7 @@ while play_game
         if is_vowel?(letter)
           first_new_word = first_word[0...i]
           break
-        else
+        else # if first word doesn't have a vowel
             first_new_word = first_word
         end
         i -= 1
@@ -52,11 +52,10 @@ while play_game
 
         i = 0
         last_word.each_char do |letter|
-        #if last_word doesn't have a,e,i,o, or u
             if is_vowel?(letter)
                 last_new_word = last_word[i..-1]
                 break
-            else
+            else #if last_word doesn't have a,e,i,o, or u
                 last_new_word = last_word
             end
             i += 1
