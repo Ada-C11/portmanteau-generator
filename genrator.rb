@@ -36,7 +36,6 @@ def run_generator
   if port_a == ""
     port_a = word_a
   end
-  puts "port_a is now  #{port_a}"
 
   port_b.each_char do |c|
     if is_vowel?(c) == false
