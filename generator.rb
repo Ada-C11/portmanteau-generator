@@ -40,8 +40,7 @@ def run_generator
   # puts "Is #{test_consonant} a vowel?"
   # puts is_vowel?(test_consonant)
 
-  # reverses first word
-  # finds last vowel and its index position
+  # reverses first word and finds last vowel and stores its index value
   count = 0
   first_word.reverse.each_char do |letter|
     if is_vowel?(letter) == false
@@ -51,6 +50,7 @@ def run_generator
     end
   end
 
+  # finds the first vowel in the second word and stores its index value
   count_two = 0
   second_word.each_char do |letter|
     if is_vowel?(letter) == false
@@ -60,11 +60,18 @@ def run_generator
     end
   end
 
+  # if the first word's length is equal to its number of consonants 
+  # outputs the entire first word
+  # otherwise it outputs the word up until, and excluding, its last vowel
   if first_word.length == count.abs
     print "#{first_word}"
   else
     print "#{first_word[0...(count - 1)]}"
   end
+
+  # if the second word's length is equal to its number of consonants
+  # outputs the entire second word
+  # otherwise it outputs the word up until, and including, its first vowel
   if second_word.length == count_two
     print "#{second_word}"
   else
