@@ -33,10 +33,10 @@ def run_generator
     end
   end
 
-  # this currently doesn't work! Trying to solve for words with no vowels
-  if port_a == nil
-    port_a == word_a
+  if port_a == ""
+    port_a = word_a
   end
+  puts "port_a is now  #{port_a}"
 
   port_b.each_char do |c|
     if is_vowel?(c) == false
@@ -45,10 +45,9 @@ def run_generator
       break
     end
   end
-  
-  # this currently doesn't work! Trying to solve for words with no vowels
-  if port_b == nil
-    port_a == word_a
+
+  if port_b == ""
+    port_b = word_b
   end
 
   puts port_a + port_b
