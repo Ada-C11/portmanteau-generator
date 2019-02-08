@@ -36,13 +36,17 @@ def make_portmanteau(word, word_number)
   if segment_length(word) == 0
     return word
   end
-  # (1): returns string up to (but not including) the last vowel or (2): returns word including & beyond the first vowel.
+  # Return correct segment of the word/string for the pormanteau.
   if word_number == 1
+    # Figure out how many characters there are *before* the *last* vowel in the word (because it's calling the method on the reverse of the word).
     length = segment_length(word.reverse)
+    # This segment is the first character in the word up to and not including the last vowel.
     segment1 = word[0...length - 1]
     return segment1
   elsif word_number == 2
+    # Figure out how many characters there are after the first vowel in the word.
     length = segment_length(word)
+    # Flip the word, cut it up to and including the last vowel, then flip it back so the segment is the first vowel in the word until the end of the word.
     segment2 = word.reverse[0..length - 1].reverse
     return segment2
   end
