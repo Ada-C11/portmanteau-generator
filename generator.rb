@@ -40,14 +40,13 @@ def run_generator
   new_word_two = ""
   second_index = 0
   word_two.each_char do |letter|
-    if !word_two.match (/[aeiou]/)
+    if !is_vowel?(letter)
       new_word_two = word_two
-    elsif !is_vowel?(letter)
-      second_index += 1
-    else
+    elsif is_vowel?(letter)
       new_word_two = word_two[(second_index)..word_two.length - 1]
       break
     end
+    second_index += 1
   end
 
   puts "OK, here is your portmanteau: #{new_word_one + new_word_two}"
