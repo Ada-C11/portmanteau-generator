@@ -1,6 +1,6 @@
 def run_generator
-  first_word = user_input("first word", first_word)
-  second_word = user_input("second word", second_word)
+  first_word = user_input("first word")
+  second_word = user_input("second word")
 
   first_word_part2 = 0
   first_word.each_char do |c|
@@ -31,15 +31,14 @@ def is_vowel?(letter)
   end
 end
 
-def user_input(word, input)
+def user_input(word)
   puts "What is the #{word} to combine?"
   input = gets.chomp.downcase
-  return input
   while input.length < 2
     puts "Please enter a word greater than 2 character long"
     input = gets.chomp.downcase
-    return input
   end
+  return input
 end
 
 run_generator
