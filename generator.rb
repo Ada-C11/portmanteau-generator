@@ -30,12 +30,10 @@ end
 def create_first_half(word)
   word.reverse.each_char { |c|
     if is_vowel?(c)
-      puts word.index(c)
       i = word.length - 1 - word.reverse.index(c)
       return word.slice(0...i)
     end
   }
-
   return word
 end
 
