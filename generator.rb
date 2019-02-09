@@ -6,6 +6,7 @@ def is_vowel?(letter)
   return false
 end
 
+
 def get_word_from_user(word)
   puts "What is the #{word} to combine?"
   word = gets.chomp.to_s
@@ -16,38 +17,34 @@ def get_word_from_user(word)
   return word
 end
 
+
 def chop_first_word(first_word)
   stop_index = first_word.length - 1
 
   first_word.reverse.each_char do |letter|
     if is_vowel?(letter)
-      break
-    elsif stop_index == 0
-      stop_index = first_word.length
-      break
+      return first_word[0...stop_index]
     end
-    stop_index = stop_index - 1
+    stop_index -= 1
   end
-
-  first_half = first_word[0...stop_index]
-  return first_half
+  stop_index = first_word.length
+  return first_word[0...stop_index]
 end
+
 
 def chop_second_word(second_word)
   start_index = 0
 
   second_word.each_char do |letter|
     if is_vowel?(letter)
-      break
-    elsif start_index == second_word.length - 1
-      start_index = 0
-      break
+      return second_word[start_index..second_word.length]
     end
     start_index += 1
   end
-  second_half = second_word[start_index..second_word.length]
-  return second_half
+  start_index = 0
+  return second_word[start_index..second_word.length]
 end
+
 
 def run_generator
   first_word = get_word_from_user("first word")
@@ -61,6 +58,7 @@ def run_generator
   puts "#{first_word} + #{second_word} is #{new_word}"
 end
 
+
 run_generator
 play_again = true
 
@@ -73,4 +71,3 @@ while play_again
     play_again = false
   end
 end
-
