@@ -28,17 +28,14 @@ def get_input
 end
 
 def create_first_half(word)
-  last_vowel = -1
-  word.each_char { |c|
+  word.reverse.each_char { |c|
     if is_vowel?(c)
-      last_vowel = word.rindex(c)
+      i = word.index(c)
+      return word.slice(0...i)
     end
   }
 
-  if last_vowel == -1
-    return word
-  end
-  return word.slice(0...last_vowel)
+  return word
 end
 
 def create_second_half(word)
