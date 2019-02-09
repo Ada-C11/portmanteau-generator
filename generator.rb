@@ -25,7 +25,7 @@ class Portmanteau_generator
   def get_word(order)
     print "What is the #{order} word to combine? "
     word = gets.chomp.upcase
-    while word.length < 2 || word.count(VOWEL) < 1
+    while word.length < 2 || !(is_vowel?(word))
       puts "Please ensure word is greater than one character and contains a vowel!"
       word = gets.chomp.upcase
     end
@@ -67,7 +67,7 @@ class Portmanteau_generator
     return word.length
   end
 
-  # Method takes a letter and checks if it is a vowel.
+  # Method takes a letter and checks if it is a vowel or if string contains one or more vowels.
   # @Returns boolean
   def is_vowel?(letter)
     return letter.count(VOWEL) > 0
