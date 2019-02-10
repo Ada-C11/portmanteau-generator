@@ -18,6 +18,36 @@ def input_validation
     return input.downcase
 end
 
+# finds last vowel of first word
+def last_vowel(word)
+    i = 0
+    last_vowel = word.length
+  
+    word.each_char do |letter|
+        if is_vowel?(letter)
+            last_vowel = i
+        end
+        i += 1 
+    end
+    # note for dee ==> I assumed that if the first letter of the first word is a vowel that the whole first word would be used
+    return word[0..last_vowel-1]
+end
+
+# finds first vowel of second word
+def first_vowel(word)
+    i = 0
+    first_vowel = 0
+    
+    word.each_char do |letter|
+        if is_vowel?(letter)
+            first_vowel = i
+            break
+        end
+        i += 1 
+    end
+    return word[first_vowel..word.length]
+end
+
 # requests word input from user and displays inputs
 def run_generator
     # requests first word from user
@@ -37,40 +67,22 @@ def run_generator
     puts "The second input is #{word_b}"
     puts "in the run_generator method"
 
-    i = 0
-    last_vowel = word_a.length
-    # finds last vowel of first word
-    word_a.each_char do |letter|
-        if is_vowel?(letter)
-            last_vowel = i
-        end
-        i += 1 
-    end
+    # returns word from first letter to letter before last vowel
+    word1 = last_vowel(word_a)
 
-    # determines letters from beginning of word to last vowel
-    # note for dee ==> I assumed that if the first letter of the first word is a vowel that the whole first word would be used
-    word1 = word_a[0..last_vowel-1]
-
-    i = 0
-    first_vowel = 0
-    # finds first vowel of second word
-    word_b.each_char do |letter|
-        if is_vowel?(letter)
-            first_vowel = i
-            break
-        end
-        i += 1 
-    end
-
-    # determines letters starting at the first vowel of the second word
-    word2 = word_b[first_vowel..word_b.length]
+    # returns word from first vowel to the last letter
+    word2 = first_vowel(word_b)
 
     # generates portmanteau
     portmanteau = word1 + word2
 
     # displays user's portmanteau 
-    puts "\nYour portmanteau is: #{portmanteau}"
+    return "\nYour portmanteau is: #{portmanteau}"
 end
 
-# runs the input portion of generator
-run_generator
+# runs generator
+puts run_generator
+
+
+
+  
