@@ -26,4 +26,4 @@ word_b = b[1]
 words << word_b
 
 puts "Word #{word_a} + #{word_b} is #{words.join("")}"
-end
+
