@@ -7,6 +7,7 @@ def is_vowel?(letter)
   end
 end
 
+# Gather user input of first and second part of portmanteau. Verify at least 2 characters long.
 def run_generator
   puts "What is the first word to combine?: "
   first_word = gets.chomp.downcase
@@ -22,9 +23,11 @@ def run_generator
     second_word = gets.chomp
   end
 
+  # Print user input words to screen.
   puts "The first word is #{first_word}."
   puts "The second word is #{second_word}."
 
+  
   first_word_array = first_word.reverse.split(//)
 
   first_word_array.each do |letter|
