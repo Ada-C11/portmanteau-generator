@@ -70,6 +70,6 @@ word2.each_char do |letter|
 
 end 
 
-puts run_generator  
+puts run_generator 
  
 
