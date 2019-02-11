@@ -1,58 +1,71 @@
+# Validates if value in word
 def is_vowel?(letter)
   if letter == "a" || letter == "e" || letter == "i" || letter == "o" || letter == "u"
-    puts "true"
+    return true
   else
-    puts "false"
+    return false
   end
 end
 
 def run_generator
   puts "What is the first word to combine?: "
-  a = gets.chomp
-  if a.length < 2
-    puts "Error. Your input is invalid. Please sumbit a word with at least 2 characters."
-    until a.length >= 2
-      puts "Please provide the first word:"
-      a = gets.chomp
-    end
+  first_word = gets.chomp.downcase
+  until first_word.length >= 2
+    puts "Error. Please sumbit a word with at least 2 characters:"
+    first_word = gets.chomp
   end
 
   puts "What is the second word to combine?: "
-  b = gets.chomp
-  if b.length < 2
-    puts "Error. Your input is invalid. Please sumbit a word with at least 2 characters."
-    until b.length >= 2
-      puts "Please provide the second word:"
-      b = gets.chomp
-    end
+  second_word = gets.chomp.downcase
+  until second_word.length >= 2
+    puts "Error. Please sumbit a word with at least 2 characters:"
+    second_word = gets.chomp
   end
 
-  puts "The first input is #{a}."
-  puts "The second input is #{b}."
-  puts "in the run_generator method"
+  puts "The first word is #{first_word}."
+  puts "The second word is #{second_word}."
 
-  i = 0
-  part1 = 0
-  a.reverse.each_char do |letter|
-    if is_vowel?(letter)
-      part1 = (a.length + 1) - i
+  first_word_array = first_word.reverse.split(//)
+
+  first_word_array.each do |letter|
+    if is_vowel?(letter) == false
+      first_word = first_word.chop!
+    else
+      first_word = first_word.chop!
       break
     end
-    i += 1
   end
 
-  i = 0
-  part2 = 0
-  b.each_char do |letter|
-    if is_vowel?(letter)
-      part2 = i
-      break
+  part2_index = 0
+  vowels2 = 0
+
+  second_word_array = second_word.split(//)
+
+  second_word_array.each do |letter|
+    if is_vowel?(letter) == false && vowels2 < 1
+      part2_index += 1
+    else
+      vowels2 += 1
     end
-    i += 1
   end
 
-  whole_word = a[0...part1] + b[part2...b.length]
-  puts whole_word
+  # puts "this if part 2 index: #{part2_index}"
+
+  whole_word = first_word + second_word.slice(part2_index..(second_word.length - part2_index))
+
+  puts "Your complete Portmanteau is: #{whole_word.capitalize}.\n"
+
+  puts "Would you like to continue?"
+  response = gets.chomp.downcase
+
+  case response
+  when "yes", "ya", "yup", "please", "y", "ye", "yep"
+    run_generator
+  when "no", "nah", "nope", "n"
+    puts "Thank you for using this program."
+  else
+    puts "Invalid input. Have a great day."
+  end
 end
 
 run_generator
