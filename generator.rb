@@ -37,19 +37,21 @@ def run_generator
   end
 
   part2_index = 0
-  vowels2 = 0
+  vowel = 0
 
   second_word_array = second_word.split(//)
 
   second_word_array.each do |letter|
-    if is_vowel?(letter) == false && vowels2 < 1
+    if is_vowel?(letter) == false && vowel < 1
       part2_index += 1
     else
-      vowels2 += 1
+      vowel += 1
     end
   end
 
-  whole_word = first_word + second_word.slice(part2_index..(second_word.length - part2_index + 1))
+  puts "part 2 #{part2_index}"
+
+  whole_word = first_word + second_word.slice(part2_index..second_word.length)
 
   puts "Your complete Portmanteau is: #{whole_word.capitalize}.\n"
 
