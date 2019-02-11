@@ -8,6 +8,7 @@ def is_vowel?(letter)
     end
 end
 
+# determines if there is a vowel in a word
 def has_vowel(word)
 count = 0
   word.each_char do |letter|
@@ -31,7 +32,7 @@ play_game = true
 while play_game
 
     def run_generator
-      # To make sure that the input is greater than one character
+      # To make sure that the input is greater than one character and contains a vowel
         puts "Please enter the first word:"
         first_word = gets.chomp
         until first_word.length > 1 && has_vowel(first_word)
