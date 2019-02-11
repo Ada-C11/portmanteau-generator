@@ -49,8 +49,6 @@ def run_generator
     end
   end
 
-  puts "part 2 #{part2_index}"
-
   whole_word = first_word + second_word.slice(part2_index..second_word.length)
 
   puts "Your complete Portmanteau is: #{whole_word.capitalize}.\n"
