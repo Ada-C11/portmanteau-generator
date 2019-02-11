@@ -11,14 +11,14 @@ def run_generator
   puts "What is the first word to combine?: "
   first_word = gets.chomp.downcase
   until first_word.length >= 2
-    puts "Error. Please sumbit a word with at least 2 characters:"
+    puts "Error. Please submit a word with at least 2 characters:"
     first_word = gets.chomp
   end
 
   puts "What is the second word to combine?: "
   second_word = gets.chomp.downcase
   until second_word.length >= 2
-    puts "Error. Please sumbit a word with at least 2 characters:"
+    puts "Error. Please submit a word with at least 2 characters:"
     second_word = gets.chomp
   end
 
