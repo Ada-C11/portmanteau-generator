@@ -12,22 +12,22 @@ def is_vowel?(letter)
   end
 end
 
+# check if user inputted word with length < 2 - if not, reprompt
+def length_check(word)
+  while word.length < 2
+    puts "Please enter a word greater than 1 character!"
+    word = gets.chomp
+  end
+end
+
 def run_generator
-  # next two while loops (lines 16-28) check if user inputted word with length > 2 - if not, reprompt
-  # I realize now that these are repeat lines and I could potentially put them into a new method
   puts "\nWhat's the first word to combine?"
   first_word = gets.chomp
-  while first_word.length < 2
-    puts "Please enter a word greater than 1 character!"
-    first_word = gets.chomp
-  end
+  length_check(first_word)
 
   puts "What's the second word to combine?"
   second_word = gets.chomp
-  while second_word.length < 2
-    puts "Please enter a word greater than 1 character!"
-    second_word = gets.chomp
-  end
+  length_check(second_word)
 
   index = 0
   end_letter = nil
