@@ -42,10 +42,7 @@ def run_generator
   word_B.each_char do |c|
     if is_vowel?(c) && word_B_chop == 0 #Ensures words beginning with vowels will include entire word in portmanteau.
       break
-      # elsif is_vowel?(c) && word_B_chop == word_B_last #If word's first vowel is the word's last letter, last letter will be the only letter in the second half of portmanteau.
-      #   break
     elsif is_vowel?(c)
-      # word_B_chop += 1
       break
     elsif !is_vowel?(c) && word_B_chop == word_B_last
       word_B_chop = 0 #Reset to 0 so that all-consonant words will include entire word in portmanteau.
