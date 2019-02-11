@@ -38,7 +38,7 @@ def run_generator
     i = 0
     index_of_vowel = 0
     includes_vowel = false
-    first_word.each_char do |letter|
+    first_word.split("").each do |letter|
       vowel = is_vowel?(letter)
 
       if vowel
@@ -60,7 +60,7 @@ def run_generator
     # Finds the first instance of a vowel in the second word, then records the vowel's index number
     index_of_vowel = 0
     includes_vowel = false
-    second_word.each_char do |letter|
+    second_word.split("").each do |letter|
       vowel = is_vowel?(letter)
       if vowel
         includes_vowel = true
