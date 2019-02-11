@@ -49,12 +49,13 @@ def run_generator
     end
   end
 
-  # puts "this if part 2 index: #{part2_index}"
+  puts part2_index
 
-  whole_word = first_word + second_word.slice(part2_index..(second_word.length - part2_index))
+  whole_word = first_word + second_word.slice(part2_index..(second_word.length - part2_index + 1))
 
   puts "Your complete Portmanteau is: #{whole_word.capitalize}.\n"
 
+  # Ask the user if they would like to continue.
   puts "Would you like to continue?"
   response = gets.chomp.downcase
 
