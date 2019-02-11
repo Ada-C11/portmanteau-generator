@@ -8,6 +8,23 @@ def is_vowel?(letter)
     end
 end
 
+def has_vowel(word)
+count = 0
+  word.each_char do |letter|
+    if is_vowel?(letter)
+        count += 1
+    else
+        count = count
+    end
+  end
+  
+  if count > 0
+    return true
+  else 
+    return false
+  end
+end
+
 # my attempt at getting the game to play again
 play_game = true
 
@@ -15,19 +32,19 @@ while play_game
 
     def run_generator
       # To make sure that the input is greater than one character
-      puts "Please enter the first word:"
-      first_word = gets.chomp
-      until first_word.length > 1
-        puts "Please enter a word greater than 1 character long: "
+        puts "Please enter the first word:"
         first_word = gets.chomp
-      end
-      
-      puts "Please enter the second word:"
-      last_word = gets.chomp
-      until last_word.length > 1
-        puts "Please enter a word greater than 1 character long: "
+        until first_word.length > 1 && has_vowel(first_word)
+          puts "Your word must be > 1 character & must have a vowel: "
+          first_word = gets.chomp
+        end
+        
+        puts "Please enter the second word:"
         last_word = gets.chomp
-      end
+        until last_word.length > 1 && has_vowel(last_word)
+          puts "Your word must be > 1 character & must have a vowel: "
+          last_word = gets.chomp
+        end
 
             
       puts "The first input is #{first_word}"
