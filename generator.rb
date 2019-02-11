@@ -40,65 +40,55 @@ def run_generator
   # store the first partial word into variable word_part_A, class of string
   # In the first word, find the last instance of a vowel. The first half of the portmanteau will keep every letter of the first word until and excluding its last vowel.
 
-  # word_part_A = wordA[first_letA, last_letA]
+  counterA = 0
+  # rev_wordA = wordA.reverse
 
-  index_first_letA = 0
-  index_last_letA = (wordA.length - 1)
-  word_part_A = wordA[index_first_letA, index_last_letA]
-  # find first vowel
-  # first_letB =
-
-  # i = 0
   wordA.reverse.each_char do |this_letter|
-    if is_vowel?(this_letter) == false
-      index_first_letA -= 1
+    if !is_vowel?(this_letter)
+      counterA += 1
     else
       break
     end
   end
-  puts "word_part_A is #{word_part_A}"
-  puts index_first_letA
-  puts index_last_letA
 
-  # do similar for word_part_B
+  puts "wordA's first vowel when reversed is at index #{counterA}"
+  word_part_A = wordA[0...((wordA.length - 1)) - counterA]
+
+  # if there are no vowels in the first word, use all of its letters
+  if wordA.length == (counterA)
+    word_part_A = wordA
+  end
+
+  puts "The first half of our portmanteau is #{word_part_A}"
+
   # In the second word, find the first instance of a vowel. The second half of the portmanteau will keep every letter of the second word after and including its first vowel.
+  counterB = 0
 
-  # index_first_letA = 0
-  # index_last_letA = (wordA.length - 1)
-  # word_part_A = wordA[index_first_letA, index_last_letA]
-  # # find first vowel
-  # # first_letB =
+  wordB.each_char do |this_letter|
+    if !is_vowel?(this_letter)
+      counterB += 1
+    else
+      break
+    end
+  end
+  puts "wordB's first vowel is at index #{counterB}"
+  word_part_B = wordB[counterB..(wordB.length)]
 
-  # # i = 0
-  # wordA.each_char do |this_letter|
-  #   if !is_vowel?(this_letter)
-  #     index_first_letA += 1
-  #   else
-  #     break
-  #   end
-  # end
-  # puts "word_part_A is #{word_part_A}"
+  # if there are no vowels in the second word, use all of its letters
+  if wordB.length == (counterB)
+    word_part_B = wordB
+  end
 
-  #   # word_part_B = wordB
-  # end
-  # puts "word_part_B is #{word_part_B}"
-  # # # check if each letter in the string is a vowel
-  # # if not, .pop (or delete) it
-  # # stop after finding a vowel
-  # wordB.each_char do |letter|
-  #   until letter.is_vowel?
-  #     letter.pop
-  #   end
+  puts "The second half of our portmanteau is #{word_part_B}"
 
   # build the portmanteau by assigning it the
   # combination of word part A and word part B
 
-  # portmanteau = word_part_A + word_part_B
-  # puts "The current portmanteau is #{portmanteau}"
-  # puts "#{wordA} + #{wordB} = #{portmanteau}"
-  puts "#{wordA} and #{wordB} in the run_generator method"
+  portmanteau = word_part_A + word_part_B
+  puts "The current portmanteau is: \n#{wordA} + #{wordB} = #{portmanteau}"
+  # puts "#{wordA} and #{wordB} in the run_generator method"
 
-  # return portmanteau
+  return portmanteau
 end
 
 run_generator
