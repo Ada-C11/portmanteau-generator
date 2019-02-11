@@ -16,43 +16,47 @@ def run_generator
     word_A = gets.chomp
   end
   word_A_chop = 0
+  word_A_last = word_A.length - 1
   word_A.reverse.each_char do |c|
-    word_A_chop += 1
-    if is_vowel?(c)
+    if !is_vowel?(c) && word_A_chop == word_A_last #Ensures words with no vowels will include the full word in portmanteau.
+      break
+    elsif is_vowel?(c)
       break
     end
+    word_A_chop += 1
   end
-  word_A_chop = word_A.length - word_A_chop
-  puts word_A[0...word_A_chop]
-  # puts "Please enter your second word for the portmanteau."
-  # word_B = gets.chomp
-  # until word_B.length >= 2
-  #   puts "I'm sorry, this word is invalid. Please enter a word that is at least 2 characters long."
-  #   word_B = gets.chomp
-  # end
-  # word_B_end = word_B.length - 1
-  # word_B_new = ""
-  # word_B.reverse.each_char do |c|
-  #   if is_vowel?(c)
-  #     word_B_new = word_B_new + c
-  #   end
+  if word_A_chop == word_A_last #Ensures words with no vowels will include the full word in portmanteau.
+    puts "The first half of your word is #{word_A}."
+  else
+    word_A = word_A[0...(word_A_last - word_A_chop)]
+    puts "The first half of your word is #{word_A}."
+  end
+  puts "Please enter your second word for the portmanteau."
+  word_B = gets.chomp
+  until word_B.length >= 2
+    puts "I'm sorry, this word is invalid. Please enter a word that is at least 2 characters long."
+    word_B = gets.chomp
+  end
+  word_B_chop = 0
+  word_B_last = word_B.length - 1
+  word_B.each_char do |c|
+    if is_vowel?(c) && word_B_chop == 0 #Ensures words beginning with vowels will include entire word in portmanteau.
+      break
+      # elsif is_vowel?(c) && word_B_chop == word_B_last #If word's first vowel is the word's last letter, last letter will be the only letter in the second half of portmanteau.
+      #   break
+    elsif is_vowel?(c)
+      # word_B_chop += 1
+      break
+    elsif !is_vowel?(c) && word_B_chop == word_B_last
+      word_B_chop = 0 #Reset to 0 so that all-consonant words will include entire word in portmanteau.
+      break
+    else
+      word_B_chop += 1
+    end
+  end
+  word_B = word_B[word_B_chop..word_B_last]
+  puts "The second half of your word is #{word_B}."
+  puts "\nYour portmanteau is #{word_A + word_B}."
 end
 
 run_generator
-# puts word_B_new
-# vowel_count = 0
-# word_A.each_char do |c|
-#   if is_vowel?(c)
-#     vowel_count += 1
-#   else
-#     vowel_count += 0
-#   end
-# end
-# word_A_array = word_A.split(//)
-# puts word_A_array[0...vowel_count]
-# half_A = word_A_array[0...vowel_count].join
-# puts half_A
-
-# puts "Thanks! The first word you entered is #{word_A}, and the second word you entered is #{word_B}."
-# puts "in the run_generator method"
-# end
