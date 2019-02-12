@@ -1,4 +1,3 @@
-
 # This creates a method that looks for a vowel. 
 def is_vowel?(letter)
   case letter
@@ -12,21 +11,19 @@ end
 def run_generator 
     puts "What is the first word to combine?"
     word1 = gets.chomp
-    if word1.length < 2 
+    until word1.length > 1 #&& word1 == "a" || word1 == "e" || word1 == "i" || word1 == "o" || word1 == "u"
         puts "Input must be at least two characters long and include a vowel."
         puts "Please enter the first word."
         word1 = gets.chomp
-        
+    
     end 
     puts "What is the second word to combine?"
     word2 = gets.chomp
-    if word2.length < 2
+    until word2.length > 1
         puts "Input must be at least two characters long and include a vowel."
         puts "Please enter the second word."
         word2 = gets.chomp
     end 
-
-
  
 #check if first word contains a vowel then deletes at the last vowel. 
 counter1 = 0
@@ -71,5 +68,3 @@ word2.each_char do |letter|
 end 
 
 puts run_generator 
- 
-
