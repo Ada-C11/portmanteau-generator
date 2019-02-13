@@ -25,7 +25,7 @@ class Portmanteau_generator
   def get_word(order)
     print "What is the #{order} word to combine? "
     word = gets.chomp.upcase
-    while word.length < 2 || !(is_vowel?(word))
+    while word.length < 2 #|| !(has_vowel?(word))
       puts "Please ensure word is greater than one character and contains a vowel!"
       word = gets.chomp.upcase
     end
@@ -47,12 +47,12 @@ class Portmanteau_generator
     indexed_vowel_f = (first_length - 1) - first_vowel(first.reverse)
     # If the first word has a vowel then it chop at the index of the last vowel. (exclusive)
     #    -> if no vowel present indexed_vowel_f will be equal to -1.
-    first = first[0...indexed_vowel_f] if indexed_vowel_f > -1
+    first = first[0...indexed_vowel_f] if indexed_vowel_f != -1
     # Find index of first vowel in second word.
     indexed_vowel_s = first_vowel(second)
     # If the second word has a vowel then chop at the index of the first vowel. (inclusive)
     #    -> if no vowel present indexed_vowel_f will be equal to length of second word.
-    second = second[indexed_vowel_s..-1] if indexed_vowel_s < second.length
+    second = second[indexed_vowel_s..-1] if indexed_vowel_s != second.length
     return (first + second)
   end
 
@@ -70,8 +70,10 @@ class Portmanteau_generator
   # Method takes a letter and checks if it is a vowel or if string contains one or more vowels.
   # @Returns boolean
   def is_vowel?(letter)
-    return letter.count(VOWEL) > 0
+    return letter.count(VOWEL) != 0
   end
+
+  alias_method :has_vowel?, :is_vowel?
 end
 
 ada_word_combo = Portmanteau_generator.new
