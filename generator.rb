@@ -25,7 +25,7 @@ class Portmanteau_generator
   def get_word(order)
     print "What is the #{order} word to combine? "
     word = gets.chomp.upcase
-    while word.length < 2 #|| !(has_vowel?(word))
+    while word.length < 2 || !(has_vowel?(word))
       puts "Please ensure word is greater than one character and contains a vowel!"
       word = gets.chomp.upcase
     end
