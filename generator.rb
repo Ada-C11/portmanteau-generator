@@ -1,4 +1,5 @@
-
+# Portmanteau_generator is a command line interface (CLI) program that allows any user to interact with the command
+# line to perform simple manipulation of words and create portmanteaus.
 class Portmanteau_generator
   VOWEL = "AEIOU"
 
@@ -17,6 +18,7 @@ class Portmanteau_generator
       user = gets.chomp.upcase
     end
     puts "Good-Bye!"
+    return true
   end
 
   # Method gets word from user with min length of 2 and contains at least one vowel.
@@ -57,6 +59,7 @@ class Portmanteau_generator
   end
 
   # Method returns index of first_vowel word. If no vowel in word, method returns length of word.
+  # @Param string -> word
   # @Returns int
   def first_vowel(word)
     word.split("").each do |char|
@@ -68,6 +71,7 @@ class Portmanteau_generator
   end
 
   # Method takes a letter and checks if it is a vowel or if string contains one or more vowels.
+  # @Param string -> letter
   # @Returns boolean
   def is_vowel?(letter)
     return letter.count(VOWEL) != 0
