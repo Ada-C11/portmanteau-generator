@@ -9,59 +9,49 @@ end
 def run_generator
   puts "Please enter the first word:"
   first_word = gets.chomp
-  first_array = first_word.chars.to_a
-  first_length = first_array.length
-  until first_length >= 2
-    puts "please enter a word greater than one charactor long:"
+  until first_word.length >= 2
+    puts "please enter a word with more than one character:"
     first_word = gets.chomp
-    first_array = first_word.chars.to_a
-    first_length = first_array.length
-  end
-  i = 0
-  first_array.each do |item|
-    n = is_vowel?(item)
-    if n == true
-      k = i
-    else
-      i += 1
-    end
-  end
-  if i == 0
-    word_a = first_word.slice(1..first_length)
-  else
-    word_a = first_word.slice(0...i)
   end
   puts "please enter the second word:"
   second_word = gets.chomp
-  second_array = second_word.chars.to_a
-  second_length = second_array.length
-  until second_length >= 2
-    puts "please enter a word greater than one charactor long:"
+  until second_word.length >= 2
+    puts "please enter a word with more than one charactor:"
     second_word = gets.chomp
-    second_array = second_word.chars.to_a
-    second_length = second_array.length
   end
-
+  new_word = first_word.reverse
+  first_array = new_word.chars.to_a
   i = 0
-  second_array.each do |item|
-    n = is_vowel?(item)
-    if n == true
-      l = i
-    else
-      i += 1
+  k = 0
+  first_array.each_with_index do |item, index|
+    if is_vowel?(item)
+      i = index
+      k = 1
+      break
     end
   end
-
-  if i < second_length
-    word_b = second_word.slice((i - 1)..second_length)
-  elsif i = second_length
-    word_b = second_word
+  if i == 0 && k == 0
+    word_a = first_word
+  else
+    word_a = first_word.slice(0...(first_word.length - (i + 1)))
   end
-  puts "The first word is #{first_word}"
-  puts "The second word is #{second_word}"
+  second_array = second_word.chars.to_a
+  j = 0
+  second_array.each_with_index do |item, index|
+    if is_vowel?(item)
+      j = index
+      break
+    end
+  end
+  if j == 0
+    word_b = second_word
+  else
+    word_b = second_word.slice(j..second_word.length)
+  end
   portmanteau = word_a + word_b
-
-  puts "portmanteau is #{portmanteau}"
+  puts "First word is #{first_word}"
+  puts "Second word is #{second_word}"
+  puts "Here is your potmanteau: #{portmanteau}"
 end
 
-puts "That was your portmanteau #{run_generator}!"
+run_generator
