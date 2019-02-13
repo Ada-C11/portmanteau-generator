@@ -1,75 +1,71 @@
 # check for vowels
 def is_vowel?(letter)
-  if ["a", "e", "i", "o", "u"].include?(letter.downcase)
+  if "aeiou".include?(letter.downcase)
     return true
   else
     return false
   end
 end
 
-# validate user input for at least 2 characters
+# validate user input
 def validate
-  word = gets.chomp.downcase
-  until word.length > 1
+  input = gets.chomp.downcase
+  # allow input of at least 2 characters
+  until input.length >= 2
     puts "Input must be at least 2 characters."
     print "Enter again: "
-    word = gets.chomp.downcase
+    validate
   end
-  return word
-end
-
-# ask user to enter the first word, then check if it contains at least one vowel
-def enter_first_word
-  print "Enter the first word: "
-  @first_word = validate
-  @index = 0
-  @first_word.reverse.each_char { |char|
-    if is_vowel?(char)
-      break
-    end
-    @index += 1
-  }
-  while @index == @first_word.length # there is no vowel in the first word
-    puts "Invalid input. Please enter a word containing at least one vowel."
-    enter_first_word
-  end
-
-  # get the first part of portmanteau
-  first_part = @first_word.reverse[@index + 1, @first_word.reverse.length - @index].reverse
-  return first_part
-end
-
-# ask user to enter the second word, then check if it contains at least one vowel
-def enter_second_word
-  print "Enter the second word: "
-  @second_word = validate
-  @index_second = 0
-  @second_word.split("").each { |char| # optional enhancement: using another method besides .each_char
-    if is_vowel?(char)
-      break
-    end
-    @index_second += 1
-  }
   # optional enhancement: handle input that does not contain a vowel
-  while @index_second == @second_word.length # there is no vowel in the second word
-    puts "Invalid input. Please enter a word containing at least one vowel."
-    enter_second_word
+  until input =~ /["a","e","i","o","u"]/
+    print "Invalid input. Please enter a word containing at least one vowel.\nEnter again:"
+    validate
   end
-
-  # get the second part of portmanteau
-  second_part = @second_word[@index_second, @second_word.length - @index_second]
-  return second_part
+  return input
 end
 
-# get the two words, then combine and print
-def run_generator
-  first_part = enter_first_word
-  second_part = enter_second_word
-  puts "The first input is \"#{@first_word}\""
-  puts "The second input is \"#{@second_word}\""
-  puts "in the run_generator method."
+# In the first word,find the last instance of a vowel.
+# The first half of the portmanteau will keep every letter of the first word until and excluding its last vowel.
+def gets_first_word(first_word)
+  index = 0
+  first_word.reverse.each_char { |char|
+    if is_vowel?(char)
+      break
+    end
+    index += 1
+  }
+  # get the first part of portmanteau
+  first_part_portmanteau = first_word.reverse[index + 1, first_word.reverse.length - index].reverse
+  return first_part_portmanteau
+end
 
-  puts "#{@first_word} + #{@second_word} is #{first_part}#{second_part}"
+# In the second word, find the first instance of a vowel.
+# The second half of the portmanteau will keep every letter of the second word after and including its first vowel.
+def gets_second_word(second_word)
+  index = 0
+  second_word.split("").each { |char| # optional enhancement: using another method besides .each_char
+    if is_vowel?(char)
+      break
+    end
+    index += 1
+  }
+  # get the second part of portmanteau
+  second_part_portmanteau = second_word[index, second_word.length - index]
+  return second_part_portmanteau
+end
+
+# get the two words, combine them to create a portmanteau and print
+def run_generator
+  print "Enter the first word: "
+  first_word = validate
+  first_part_portmanteau = gets_first_word(first_word)
+  print "Enter the second word: "
+  second_word = validate
+  second_part_portmanteau = gets_second_word(second_word)
+  puts "The first input is \"#{first_word}\""
+  puts "The second input is \"#{second_word}\""
+  puts "in the run_generator method."
+  puts "#{first_word} + #{second_word} is #{first_part_portmanteau}#{second_part_portmanteau}"
   continue?
 end
 
