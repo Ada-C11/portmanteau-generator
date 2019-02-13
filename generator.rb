@@ -1,83 +1,93 @@
-# program that generates a portmanteau by combining two words that the user enters
+# program that generates a portmanteau by combining two words that the
+# user enters
+
+# outputs welcome message
+puts "\nWelcome to Portmanteau Pro Deluxe 5!"
+print "I will combine any two words, of your choice, into one AMAZING "
+puts "new word!"
+
 # method that checks whether a letter is a vowel or not
 def is_vowel?(letter)
-  if ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"].include?(letter)
+  if ["a", "e", "i", "o", "u"].include?(letter)
     return true
   else
     return false
   end
 end
 
-# method that cheks that the length of a user entered word is 2 or greater
-def word_length(word)
+# method that returns user input after verifying that is at least 2
+# letters in length
+def input
+  word = gets.chomp.downcase
   until word.length >= 2
-    print "Error: Please enter a word that is at least 2 letters in length: "
-    word = gets.chomp
+    print "ERROR! Please enter a word that is at least 2 letters in "
+    print "length: "
+    word = gets.chomp.downcase
+  end
+  return word
+end
+
+# method that returns the first half of the portmanteau
+def portmanteau_first_half(word)
+  last_vowel_index = nil
+  word.each_char do |letter|
+    last_vowel_index = word.rindex(letter) if is_vowel?(letter)
+  end
+
+  if last_vowel_index == nil
+    return word
+  else
+    return word[0...last_vowel_index]
   end
 end
 
-# method that generates a portmanteau based off of two words entered in by a 
-# user
+# method that returns the second half of the portmanteau
+def portmanteau_second_half(word)
+  first_vowel_index = nil
+  word.each_char do |letter|
+    first_vowel_index = word.index(letter) if is_vowel?(letter)
+  end
+
+  if first_vowel_index == nil
+    return word
+  else
+    return word[first_vowel_index..-1]
+  end
+end
+
+# method that generates a portmanteau based off input from the user
 def run_generator
 
   # prompts user for two words that they would like to combine
-  # outputs the two words the the user entered
-  puts "Please enter in your first word to combine: "
-  first_word = gets.chomp
-  word_length(first_word)
-  puts "Please enter in your second word to combine: "
-  second_word = gets.chomp
-  word_length(second_word)
-  puts "The first word is #{first_word}"
-  puts "The second word is #{second_word}"
-  # puts "in the run_generator method"
+  print "\nPlease enter in the first word you would like to combine: "
+  first_word = input
+  print "Please enter in the second word you wouldl like to combine: "
+  second_word = input
 
-  # test_vowel = "i"
-  # puts "Is #{test_vowel} a vowel?"
-  # puts is_vowel?(test_vowel)
-
-  # test_consonant = "g"
-  # puts "Is #{test_consonant} a vowel?"
-  # puts is_vowel?(test_consonant)
-
-  # reverses first word and finds last vowel and stores its index value
-  count = 0
-  first_word.reverse.each_char do |letter|
-    if is_vowel?(letter) == false
-      count -= 1
-    else
-      break
-    end
-  end
-
-  # finds the first vowel in the second word and stores its index value
-  count_two = 0
-  second_word.each_char do |letter|
-    if is_vowel?(letter) == false
-      count_two += 1
-    else
-      break
-    end
-  end
-
-  # if the first word's length is equal to its number of consonants 
-  # outputs the entire first word
-  # otherwise it outputs the word up until, and excluding, its last vowel
-  if first_word.length == count.abs
-    print "#{first_word}"
-  else
-    print "#{first_word[0...(count - 1)]}"
-  end
-
-  # if the second word's length is equal to its number of consonants
-  # outputs the entire second word
-  # otherwise it outputs the word up until, and including, its first vowel
-  if second_word.length == count_two
-    print "#{second_word}"
-  else
-    print second_word[count_two..-1]
-  end
+  # combines user input and outputs the portmanteau
+  portmanteau = portmanteau_first_half(first_word) << portmanteau_second_half(second_word)
+  puts "\n#{first_word} + #{second_word} = #{portmanteau}"
+  puts "Isn't that an AMAZING new word?!"
 end
 
-run_generator
-puts ""
+# prompts a user on whether they would like to create another
+# portmanteau
+
+# method that checks if an input is yes or no
+def yes_no?
+  input = gets.chomp.downcase
+  until input == "no" || input == "yes"
+    print "ERROR! Please enter either yes, or no: "
+    input = gets.chomp.downcase
+  end
+  return input
+end
+
+# prompts a user on whether they would like to create another
+# portmanteau
+continue = "yes"
+while continue == "yes"
+  run_generator
+  print "\nWould you like to create another portmanteau (yes/no)? "
+  continue = yes_no?
+end
